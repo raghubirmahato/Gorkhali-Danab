@@ -3,7 +3,7 @@
 # Needs: python3 with fonttools + uharfbuzz, node with playwright.
 set -euo pipefail
 cd "$(dirname "$0")"
-[ -f fonts/cinzel-900.ttf ] && [ -f fonts/eczar-800.ttf ] || ./fetch-fonts.sh
+[ -f fonts/cinzel-900.ttf ] && [ -f fonts/eczar-800.ttf ] && [ -f fonts/alfa-slab.ttf ] || ./fetch-fonts.sh
 python3 lockup.py ..
 r() { node render.js "../$1.svg" "../png/$1-$2.png" "$2"; echo "png/$1-$2.png"; }
 r gorkhali-danab-logo 1024
@@ -15,3 +15,9 @@ r gorkhali-danab-horizontal 3200
 r gorkhali-danab-horizontal-dark 1600
 r gorkhali-danab-horizontal-dark 3200
 for s in 32 64 180 512 1024 2048; do r gorkhali-danab-emblem $s; done
+
+# painted badge: crisp banner, khukuris, sun and Devanagari over the painting
+python3 badge.py
+node render.js ../badge/gorkhali-danab-badge.svg ../badge/gorkhali-danab-badge.png 1530
+node render.js ../badge/gorkhali-danab-badge.svg ../badge/gorkhali-danab-badge-1024.png 1024
+rm ../badge/gorkhali-danab-badge.svg   # embeds the painting; the PNGs are the deliverables

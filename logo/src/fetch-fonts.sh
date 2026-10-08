@@ -10,3 +10,4 @@ fetch() {
 }
 fetch "Cinzel:wght@900" cinzel-900.ttf
 fetch "Eczar:wght@800" eczar-800.ttf
+fetch "Alfa+Slab+One" alfa-slab.ttf
